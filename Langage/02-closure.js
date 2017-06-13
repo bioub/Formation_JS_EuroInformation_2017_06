@@ -16,7 +16,7 @@ const asyncClosure = function(msg) {
 asyncClosure('Hello');
 
 /*
-const createButton = function(value) {
+const createButton = function(options) {
   const btn = document.createElement('button');
   btn.addEventListener('click', function onClick() {
     // value et btn sont sauvegardés dans la portée

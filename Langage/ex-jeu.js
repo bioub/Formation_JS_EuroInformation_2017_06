@@ -53,7 +53,7 @@ const jouer = function() {
     console.log('Vous avez déjà joué : ' + essais.join(' - '));
   }
 
-  rl.question('Saisir un nombre : ', function onEnter(saisie) {
+  rl.question('Saisir un nombre : ', (saisie) => {
 
     const entierSaisi = parseInt(saisie);
 
