@@ -1,4 +1,4 @@
-// 0 - utiliser le mode strict
+'use strict';
 
 const readline = require('readline');
 
@@ -6,8 +6,7 @@ const Random = {
   /**
    * On renvoie un nombre aléatoire entre 0 (inclus) et 1 (exclus)
    */
-  // 1 - retirer à chaque retirer ": function"
-  get: function () {
+  get() {
     return Math.random();
   },
 
@@ -15,7 +14,7 @@ const Random = {
    * On renvoie un nombre aléatoire entre une valeur min (incluse)
    * et une valeur max (exclue)
    */
-  getArbitrary: function (min, max) {
+  getArbitrary(min, max) {
     return Math.random() * (max - min) + min;
   },
 
@@ -25,7 +24,7 @@ const Random = {
    * Attention : si on utilisait Math.round(), on aurait une distribution
    * non uniforme !
    */
-  getInt: function (min, max) {
+  getInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min;
@@ -37,64 +36,55 @@ const Random = {
    * Attention : si on utilisait Math.round(), on aurait une distribution
    * non uniforme !
    */
-  getIntInclusive: function(min, max) {
+  getIntInclusive(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min +1)) + min;
   }
 };
 
-// 2 - Utiliser le mot clé class
-const Jeu = function(options) {
-  // 3 - Pour option utiliser la valeur par défaut
-  options = options || {};
+class Jeu {
+  constructor({min = 0, max = 100} = {}) {
+    this._rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
 
-  // Ne pas toucher à ces 2 lignes
-  const min = options.min || 0;
-  const max = options.max || 100;
-
-  this._rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
-
-  this._entierAlea = Random.getIntInclusive(min, max);
-  this._essais = [];
-};
-
-Jeu.prototype.jouer = function() {
-  if (this._essais.length) {
-    // 4 - Utiliser une template string
-    console.log('Vous avez déjà joué : ' + this._essais.join(' - '));
+    this._entierAlea = Random.getIntInclusive(min, max);
+    this._essais = [];
   }
 
-  this._rl.question('Saisir un nombre : ', (saisie) => {
-
-    // 5 - Privilégier Number.parseInt
-    // et Number.isNaN
-    const entierSaisi = parseInt(saisie);
-
-    if (isNaN(entierSaisi)) {
-      console.log('Erreur : il faut saisir un entier');
-      return this.jouer();
+  jouer() {
+    if (this._essais.length) {
+      console.log(`Vous avez déjà joué : ${this._essais.join(' - ')}`);
     }
 
-    this._essais.push(entierSaisi);
+    this._rl.question('Saisir un nombre : ', (saisie) => {
 
-    if (entierSaisi < this._entierAlea) {
-      console.log('Trop petit');
-      return this.jouer();
-    }
+      const entierSaisi = Number.parseInt(saisie);
 
-    if (entierSaisi > this._entierAlea) {
-      console.log('Trop grand');
-      return this.jouer();
-    }
+      if (Number.isNaN(entierSaisi)) {
+        console.log('Erreur : il faut saisir un entier');
+        return this.jouer();
+      }
 
-    console.log('Gagné !!!');
-    this._rl.close();
-  });
-};
+      this._essais.push(entierSaisi);
+
+      if (entierSaisi < this._entierAlea) {
+        console.log('Trop petit');
+        return this.jouer();
+      }
+
+      if (entierSaisi > this._entierAlea) {
+        console.log('Trop grand');
+        return this.jouer();
+      }
+
+      console.log('Gagné !!!');
+      this._rl.close();
+    });
+  }
+}
 
 const jeu = new Jeu();
 jeu.jouer();
