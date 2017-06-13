@@ -65,6 +65,21 @@ Contact.prototype.hello = function() {
   return 'Je m\'appelle ' + this.prenom;
 };
 
+
+// En ES6
+/*
+class Contact {
+  constructor(prenom) {
+    this.prenom = prenom;
+  }
+
+  hello() {
+    return `Je m'appelle ${this.prenom}`;
+  }
+}
+*/
+
+
 const romain = new Contact('Romain');
 console.log(typeof Contact); // function
 console.log(typeof romain); // object
