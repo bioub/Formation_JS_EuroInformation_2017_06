@@ -11,6 +11,19 @@ const prenoms4Lettres = prenoms.filter(function(prenom) {
 });
 console.log(prenoms4Lettres.join(', '));
 
+console.log('-- find (ES6) --');
+const prenom5Lettres = prenoms.find(function(prenom) {
+  return prenom.length === 6;
+});
+console.log(prenom5Lettres);
+
+
+console.log('-- findIndex (ES6) --');
+const indexPrenom5Lettres = prenoms.findIndex(function(prenom) {
+  return prenom.length === 6;
+});
+console.log(indexPrenom5Lettres);
+
 const contacts = [{
   prenom: 'Romain',
   nom: 'Bohdanowicz',

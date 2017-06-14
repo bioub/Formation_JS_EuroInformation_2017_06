@@ -18,6 +18,6 @@ console.log(o2);
 console.log(o1 === o2); // false
 console.log(o1.adresse === o2.adresse); // true
 // Pour des méthodes un peu plus haut niveau
-// du genre deepClone, utiliser la bibliothèque
+// du genre cloneDeep, utiliser la bibliothèque
 // lodash (remplacant de underscore.js)
 

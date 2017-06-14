@@ -48,7 +48,7 @@ const Jeu = function(options) {
 
   this._rl = readline.createInterface({
     input: process.stdin,
-    output: process.stdout
+    output: process.stdout,
   });
 
   this._entierAlea = Random.getIntInclusive(min, max);
@@ -86,5 +86,7 @@ Jeu.prototype.jouer = function() {
   });
 };
 
-const jeu = new Jeu();
+const jeu = new Jeu({
+  max: 10,
+});
 jeu.jouer();

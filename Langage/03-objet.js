@@ -43,7 +43,7 @@ let contact = {
   prenom: 'Romain',
   hello: function() {
     return 'Je m\'appelle ' + this.prenom;
-  }
+  },
 };
 
 console.log(contact.prenom); // Romain
@@ -65,7 +65,6 @@ Contact.prototype.hello = function() {
   return 'Je m\'appelle ' + this.prenom;
 };
 
-
 // En ES6
 /*
 class Contact {
@@ -86,6 +85,15 @@ console.log(typeof romain); // object
 console.log(romain.prenom); // Romain
 console.log(romain instanceof Contact); // true
 console.log(romain.hello()); // Je m'appelle Romain
+console.log(romain.hasOwnProperty('prenom')); // true
+console.log(romain.hasOwnProperty('hello')); // false
+
+for (const prop in romain) {
+  if (romain.hasOwnProperty(prop)) {
+    console.log('Nom de propriété :', prop); // prenom
+    console['log']('Valeur :', romain[prop]); // Romain
+  }
+}
 
 const eric = new Contact('Eric');
 console.log(eric.prenom); // Eric

@@ -56,7 +56,7 @@ class Jeu {
 
   jouer() {
     if (this._essais.length) {
-      console.log(`Vous avez déjà joué : ${this._essais.join(' - ')}`);
+      console.log(`Vous avez déjà joué : ${this._essais.join(' - ')} !!!`);
     }
 
     this._rl.question('Saisir un nombre : ', (saisie) => {

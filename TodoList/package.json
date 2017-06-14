@@ -1,0 +1,16 @@
+{
+  "devDependencies": {
+    "babel-core": "^6.25.0",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.2",
+    "http-server": "^0.10.0",
+    "webpack": "^2.6.1"
+  },
+  "scripts": {
+    "start": "hs -p 8080 dist",
+    "start:dev": "hs -p 8080 src",
+    "build": "npm run build:prod",
+    "build:prod": "webpack --optimize-minimize",
+    "build:dev": "webpack -w"
+  }
+}
