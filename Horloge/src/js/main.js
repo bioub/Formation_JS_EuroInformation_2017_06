@@ -1,9 +1,7 @@
-// Module
-// Module IIFE (Immediately Invoked Function Expression)
-(function () {
-  'use strict';
+'use strict';
 
-  const conteneur = document.getElementById('horloge');
-  const horloge = new Horloge(conteneur);
-  horloge.start();
-}());
+import { Horloge } from './horloge';
+
+const conteneur = document.getElementById('horloge');
+const horloge = new Horloge(conteneur);
+horloge.start();

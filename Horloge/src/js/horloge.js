@@ -1,23 +1,24 @@
-(function() {
-  'use strict';
+'use strict';
 
-  const delay = 1000;
+import Random from './random';
 
-  class Horloge {
-    constructor(conteneur) {
-      this._conteneur = conteneur;
-    }
+const delay = 1000;
 
-    _update() {
-      this._conteneur.textContent = new Date();
-    }
-
-    start() {
-      this._update();
-      setInterval(this._update.bind(this), delay);
-    }
+export class Horloge {
+  constructor(conteneur) {
+    this._conteneur = conteneur;
   }
 
-  window.Horloge = Horloge;
-}());
+  _update() {
+    this._conteneur.textContent = new Date();
+    const r = Random.getInt(0, 256);
+    const g = Random.getInt(0, 256);
+    const b = Random.getInt(0, 256);
+    this._conteneur.style.color = `rgb(${r}, ${g}, ${b})`;
+  }
 
+  start() {
+    this._update();
+    setInterval(this._update.bind(this), delay);
+  }
+}
