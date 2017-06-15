@@ -1,7 +1,7 @@
 'use strict';
 
-import moment from 'moment';
-import Random from './random';
+//import moment from 'moment';
+import {getRandomInt} from './random';
 
 const delay = 1000;
 
@@ -11,10 +11,10 @@ export class Horloge {
   }
 
   _update() {
-    this._conteneur.textContent = moment().format('HH:mm:ss');
-    const r = Random.getInt(0, 256);
-    const g = Random.getInt(0, 256);
-    const b = Random.getInt(0, 256);
+    this._conteneur.textContent = new Date();//moment().format('HH:mm:ss');
+    const r = getRandomInt(0, 256);
+    const g = getRandomInt(0, 256);
+    const b = getRandomInt(0, 256);
     this._conteneur.style.color = `rgb(${r}, ${g}, ${b})`;
   }
 
