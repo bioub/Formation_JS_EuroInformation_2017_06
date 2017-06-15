@@ -1,3 +1,4 @@
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -7,9 +8,12 @@ module.exports = {
     filename: 'js/bundle.[hash].js'
   },
   devtool: 'source-map',
-  plugins: [new HtmlWebpackPlugin({
-    template: 'src/index.html',
-  })],
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+    }),
+  ],
   module: {
     rules: [
       {
