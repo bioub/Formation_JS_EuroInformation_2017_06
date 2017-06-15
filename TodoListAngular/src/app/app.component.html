@@ -1,0 +1,21 @@
+<h2>TodoList</h2>
+<div>
+  <input type="checkbox" (change)="toggleAll($event)" [checked]="isAllToggle()">
+  <input [(ngModel)]="saisie">
+  <button (click)="addTodo()">+</button>
+</div>
+<div>
+  <div *ngFor="let todo of todos">
+    <input type="checkbox" [(ngModel)]="todo.done">
+    <input [value]="todo.value">
+    <button (click)="removeTodo(todo)">-</button>
+  </div>
+</div>
+<!--
+1 - Supprimer la ligne au clic du bouton moins
+Il suffit de supprimer du tableau
+(indexOf, splice dans Array MDN)
+2 - Tout cocher/décocher
+Parcourir tout le tableau et tout cocher ou décocher
+(map dans Array MDN)
+  -->
