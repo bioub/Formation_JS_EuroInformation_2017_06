@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Http, Response } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-root',
@@ -10,12 +12,25 @@ export class AppComponent {
   public saisie: string = 'Default value';
   public todos: Array<any> = [];
 
+  constructor(private http: Http) {
+    http.get('http://localhost:8000/api/todos')
+      .map((res: Response) => res.json())
+      .subscribe(todos => {
+        this.todos = todos;
+      });
+  }
+
   addTodo() {
-    this.todos.push({
+    const todo = {
       done: false,
       value: this.saisie,
-    });
+    };
+    this.todos.push(todo);
     this.saisie = '';
+    this.http.post('http://localhost:8000/api/todos', todo)
+      .subscribe(() => {
+
+      });
   }
 
   removeTodo(todo) {
